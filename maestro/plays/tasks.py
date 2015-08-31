@@ -117,6 +117,17 @@ class StatusTask(Task):
             return
 
 
+class PostStartTask(Task):
+
+    """
+    Meant to be executed right after container is instantiated and is
+    validated as"running".
+    """
+
+    def _run(self):
+        return self._check_for_state('post_start', lambda x: x)
+
+
 class StartTask(Task):
     """Start a container, refreshing the image if requested.
 
