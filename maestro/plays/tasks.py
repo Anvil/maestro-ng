@@ -71,11 +71,7 @@ class Task:
                 return False
 
         # Check results
-        for check in checks.get():
-            if not check:
-                return False
-
-        return True
+        return all(checks.get())
 
     def run(self, auditor=None):
         if auditor:
