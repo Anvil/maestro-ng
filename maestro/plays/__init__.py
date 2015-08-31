@@ -270,6 +270,9 @@ class Start(BaseOrchestrationPlay):
                     container.ship.address)))
             self.register(tasks.StartTask(o, container, self._registries,
                                           self._refresh_images, self._reuse))
+            self.register(tasks.PostStartTask(
+                o, container, self._registries,
+                self._refresh_images, self._reuse))
 
 
 class Pull(BaseOrchestrationPlay):
