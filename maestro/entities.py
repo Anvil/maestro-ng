@@ -210,9 +210,9 @@ class Service(Entity):
         self._omit = omit
         self._schema = schema
         self.env = env or {}
-        self._requires = set([])
-        self._wants_info = set([])
-        self._needed_for = set([])
+        self._requires = set()
+        self._wants_info = set()
+        self._needed_for = set()
         self._containers = {}
 
     @property

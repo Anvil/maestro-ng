@@ -57,8 +57,8 @@ class BaseOrchestrationPlay:
             (c.name, self._gather_dependencies(c)) for c in containers)
 
         self._om = termoutput.OutputManager(len(containers))
-        self._threads = set([])
-        self._done = set([])
+        self._threads = set()
+        self._done = set()
         self._error = None
         self._cv = threading.Condition()
 
@@ -160,7 +160,7 @@ class BaseOrchestrationPlay:
                 else container.service.needed_for
             deps = functools.reduce(lambda x, y: x.union(y),
                                     [s.containers for s in deps],
-                                    set([]))
+                                    set())
             result = result.union(deps.intersection(containers))
 
         result.remove(container)

@@ -159,7 +159,7 @@ class Conductor:
             deps = container.service.requires if forward \
                 else container.service.needed_for
             deps = functools.reduce(lambda x, y: x.union(y),
-                                    [s.containers for s in deps], set([]))
+                                    [s.containers for s in deps], set())
             result = result.union(deps)
         return result
 
@@ -444,6 +444,6 @@ class Conductor:
         services = self._to_services(things or sorted(self.services))
         for i, service in enumerate(services, 1):
             print(service.name)
-            treehelper(service, ' ', set([]))
+            treehelper(service, ' ', set())
             if i < len(services):
                 print()

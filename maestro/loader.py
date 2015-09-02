@@ -20,7 +20,7 @@ class MaestroYamlConstructor(yaml.constructor.Constructor):
                 None, None,
                 "expected a mapping node, but found %s" % node.id,
                 node.start_mark)
-        keys = set([])
+        keys = set()
         for key_node, value_node in node.value:
             key = self.construct_object(key_node, deep=deep)
             if key in keys:
