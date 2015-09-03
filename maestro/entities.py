@@ -255,8 +255,7 @@ class Service(Entity):
     def containers(self):
         """Return an ordered list of instance containers for this service, by
         instance name."""
-        return map(lambda c: self._containers[c],
-                   sorted(self._containers.keys()))
+        return [self._containers[c] for c in sorted(self._containers.keys())]
 
     def add_dependency(self, service):
         """Declare that this service depends on the passed service."""
@@ -811,9 +810,9 @@ class Container(Entity):
                      'expected list of checks, got {}!')
                     .format(state, type(checks)))
 
-            checkers[state] = list(
-                map(lambda c: (lifecycle.LifecycleHelperFactory
-                               .from_config(self, c)), checks))
+            checkers[state] = [
+                lifecycle.LifecycleHelperFactory.from_config(self, c)
+                for c in checks]
 
         return checkers
 
