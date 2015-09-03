@@ -227,7 +227,9 @@ class Conductor:
         if len(args) > 2:
             prefix = args.pop()
 
-        print(' '.join(filter(lambda x: x.startswith(prefix), set(choices))))
+        print(' '.join([choice
+                        for choice in set(choices)
+                        if choice.startswith(prefix)]))
 
     def status(self, things, full=False, with_dependencies=False,
                concurrency=None, **kwargs):

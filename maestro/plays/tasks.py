@@ -184,9 +184,9 @@ class StartTask(Task):
             # Check if the image is available, or if we need to pull it down.
             image = self.container.get_image_details()
             if self._refresh or \
-                not filter(
-                    lambda i: self.container.image in i['RepoTags'],
-                    self.container.ship.backend.images(image['repository'])):
+                not [i
+                     for i in self.container.ship.backend.images(image['repository'])
+                     if self.container.image in i['RepoTags']]:
                 PullTask(self.o, self.container, self._registries,
                          standalone=False).run()
 
