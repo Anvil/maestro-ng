@@ -142,7 +142,7 @@ class Conductor:
         if wait and pending and len(wait) == len(pending):
             raise exceptions.DependencyException(
                 'Cannot resolve dependencies for containers {}!'.format(
-                    map(lambda x: x.name, wait)))
+                    [x.name for x in wait]))
 
         # As long as 'wait' has elements, keep recursing to resolve
         # dependencies. Otherwise, returned the ordered list, which should now
