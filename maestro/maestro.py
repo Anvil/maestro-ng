@@ -211,9 +211,10 @@ class Conductor:
         tries to type. The method then returns a list of words that would
         complete the last token the user is currently trying to complete.
         """
-        args = []
-        for token in tokens:
-            args += [x for x in token.split(' ') if not x.startswith('-')]
+        args = [x
+                for token in tokens
+                for x in token.split(' ')
+                if not x.startswith('-')]
 
         choices = AVAILABLE_MAESTRO_COMMANDS if len(args) <= 2 \
             else self.services.keys() + self.containers.keys()
