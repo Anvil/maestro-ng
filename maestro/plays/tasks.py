@@ -192,8 +192,8 @@ class StartTask(Task):
 
             # Create and start the container.
             ports = self.container.ports \
-                and list(map(lambda p: tuple(p['exposed'].split('/')),
-                             self.container.ports.values())) \
+                and [tuple(p['exposed'].split('/'))
+                     for p in self.container.ports.values()] \
                 or None
 
             self.o.pending('creating container from {}...'.format(
